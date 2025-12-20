@@ -1,0 +1,22 @@
+.result-card {
+  max-width: 600px;
+  margin: auto;
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.result-card h3 {
+  color: #ffb347;
+  margin-bottom: 10px;
+}
+
+.result-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.result-card li {
+  padding: 6px 0;
+  color: #ddd;
+}

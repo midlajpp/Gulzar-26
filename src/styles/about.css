@@ -1,0 +1,165 @@
+.about-page {
+  padding-top: 100px; /* navbar space */
+}
+
+/* Header */
+.about-header {
+  text-align: center;
+  padding: 60px 20px;
+  background: #0d0d0d;
+}
+
+.about-header h1 {
+  color: #ffb347;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.about-header p {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Content sections */
+.about-section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.about-section h2 {
+  color: #ffb347;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.about-section p {
+  color: #ddd;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+/* Light background section */
+.about-section.light {
+  background: #111;
+  border-radius: 20px;
+}
+
+
+.about-page {
+  padding-top: 100px;
+}
+
+/* Header */
+.about-header {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.about-header h1 {
+  color: #ffb347;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.about-header p {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Content */
+.about-content {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.about-content h2 {
+  color: #ffb347;
+  margin-bottom: 12px;
+}
+
+.about-content p {
+  color: #ddd;
+  line-height: 1.8;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+
+/* BROCHURE SECTION */
+
+.about-brochure {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px 20px;
+  text-align: center;
+  background: #111;
+  border-radius: 20px;
+}
+
+.about-brochure h2 {
+  color: #ffb347;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.about-brochure p {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.brochure-btn {
+  display: inline-block;
+  padding: 14px 34px;
+  background: #ffb347;
+  color: #000;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.brochure-btn:hover {
+  background: #ff9f2d;
+  transform: translateY(-2px);
+}
+
+
+/* FINAL IMAGE GALLERY */
+.about-gallery {
+  margin: 60px auto;
+  max-width: 1100px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.about-gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+}
+
+/* Hover effect */
+.about-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .about-gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .about-gallery img {
+    height: 220px;
+  }
+}

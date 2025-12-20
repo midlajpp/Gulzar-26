@@ -1,0 +1,22 @@
+.news-list {
+  display: grid;
+  gap: 15px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.news-card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.news-card h3 {
+  color: #ffb347;
+  margin-bottom: 8px;
+}
+
+.news-card p {
+  color: #ccc;
+  text-align: left;
+}

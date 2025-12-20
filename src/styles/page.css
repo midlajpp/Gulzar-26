@@ -1,0 +1,19 @@
+.page {
+  padding: 100px 20px 40px;
+  min-height: 100vh;
+}
+
+.page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffb347;
+  letter-spacing: 2px;
+}
+
+.page p {
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.7;
+  color: #ddd;
+  text-align: center;
+}

@@ -1,0 +1,291 @@
+.result-page {
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+
+/* Header */
+.result-header {
+  text-align: center;
+  padding: 30px 20px;
+}
+.result-header h1 {
+  color: #ffb347;
+  letter-spacing: 2px;
+}
+.result-header p {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Filters */
+.result-filters {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: grid;
+  gap: 15px;
+}
+.result-filters select {
+  padding: 12px 16px;
+  border-radius: 30px;
+  border: none;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* Content layout */
+.result-content {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: grid;
+  gap: 20px;
+}
+
+/* List */
+.result-list {
+  background: #111;
+  border-radius: 16px;
+  padding: 10px;
+}
+.result-row {
+  padding: 14px 12px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #ddd;
+}
+.result-row:hover,
+.result-row.active {
+  background: #1f1f1f;
+}
+.result-row .pos {
+  color: #ffb347;
+  font-weight: bold;
+}
+
+/* Preview */
+.result-preview {
+  background: #111;
+  border-radius: 16px;
+  padding: 12px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-wrap {
+  position: relative;
+}
+.poster-wrap img {
+  max-width: 100%;
+  border-radius: 14px;
+}
+
+/* Download icon on image */
+.download-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffb347;
+  text-decoration: none;
+  font-size: 18px;
+}
+.download-icon:hover {
+  background: #ffb347;
+  color: #000;
+}
+
+/* Placeholder */
+.placeholder {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .result-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.result-preview img {
+  max-width: 100%;
+  border-radius: 14px;
+  margin-bottom: 15px;
+}
+
+.download-btn {
+  padding: 12px 26px;
+  background: #ffb347;
+  color: #000;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.download-btn:hover {
+  background: #ff9f2d;
+}
+
+.result-row {
+  padding: 14px 12px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  color: #ddd;
+  background: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.result-page {
+  padding: 100px 20px 40px;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.result-selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.result-selectors select {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+.result-cards {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.result-card {
+  padding: 18px;
+  border-radius: 16px;
+  color: #fff;
+  text-align: center;
+}
+
+.result-card .prize {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.result-card h3 {
+  margin: 6px 0;
+  font-size: 20px;
+}
+
+.result-card p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.download-btn {
+  margin: 25px auto 0;
+  display: block;
+  text-align: center;
+  background: #ffb347;
+  color: #000;
+  padding: 12px;
+  border-radius: 10px;
+  width: 200px;
+  text-decoration: none;
+  font-weight: bold;
+}
+/* Desktop improvements */
+@media (min-width: 768px) {
+  .result-selectors {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .result-selectors select {
+    width: 240px;
+  }
+
+  .result-cards {
+    max-width: 700px;
+    margin: 40px auto 0;
+  }
+}
+
+/* Smooth card appearance */
+.result-card {
+  animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Better touch feel */
+.result-selectors select,
+.download-btn {
+  cursor: pointer;
+}
+/* ===== RESULT CARD TEXT DESIGN (IMAGE STYLE) ===== */
+
+.result-card {
+  padding: 28px 30px;
+  border-radius: 22px;
+  text-align: left; /* image like */
+}
+
+/* Prize label */
+.result-card .prize {
+  display: inline-block;
+  background: #ffffff;
+  color: #222;
+  padding: 3px 14px;
+  border-radius: 0px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: -5px;
+}
+
+/* Winner name */
+.result-card h3 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+/* Team name */
+.result-card p {
+  margin-top: -7px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+}

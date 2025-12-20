@@ -1,0 +1,36 @@
+.admin-results {
+  padding: 30px;
+  max-width: 700px;
+}
+
+.admin-results h2 {
+  margin-bottom: 20px;
+}
+
+.admin-results select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.admin-results h4 {
+  margin: 20px 0 10px;
+}
+
+.admin-results button {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  background: #ffb347;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-results button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
