@@ -1,12 +1,13 @@
 import express from "express";
 import Participant from "../models/Participant.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 /* -------------------------------
    ADD PARTICIPANT (ADMIN)
 --------------------------------*/
-router.post("/add", async (req, res) => {
+router.post("/add", protect, async (req, res) => {
   try {
     const { name, category, teamName } = req.body;
 
@@ -26,7 +27,7 @@ router.post("/add", async (req, res) => {
   }
 });
 
-router.get("/all", async (req, res) => {
+router.get("/all", protect, async (req, res) => {
   try {
     const participants = await Participant.find().sort({ createdAt: -1 });
     res.json(participants);
@@ -37,7 +38,7 @@ router.get("/all", async (req, res) => {
 /* -------------------------------
    DELETE PARTICIPANT
 --------------------------------*/
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", protect, async (req, res) => {
   try {
     await Participant.findByIdAndDelete(req.params.id);
     res.json({ message: "Participant deleted" });
@@ -48,7 +49,7 @@ router.delete("/:id", async (req, res) => {
 /* -------------------------------
    UPDATE PARTICIPANT
 --------------------------------*/
-router.put("/:id", async (req, res) => {
+router.put("/:id", protect, async (req, res) => {
   try {
     const { name, category, teamName } = req.body;
 

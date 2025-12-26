@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API from "../../api/axios";
 import "../styles/admin.css";
 import BackButton from "../components/BackButton";
 
@@ -150,16 +151,19 @@ export default function ManageResults() {
   /* -------- LOAD PARTICIPANTS -------- */
   useEffect(() => {
     if (!category) return;
-    fetch(`http://localhost:5000/api/results/participants?category=${category}`)
-      .then((res) => res.json())
-      .then((data) => setParticipants(data));
+    API.get(`/results/participants?category=${category}`)
+      .then((res) => setParticipants(res.data))
+      .catch((err) => console.error("Fetch participants error:", err));
   }, [category]);
 
   /* -------- LOAD ALL RESULTS -------- */
   const loadResults = async () => {
-    const res = await fetch("http://localhost:5000/api/results/all");
-    const data = await res.json();
-    setResults(data);
+    try {
+      const { data } = await API.get("/results/all");
+      setResults(data);
+    } catch (err) {
+      console.error("Fetch results error:", err);
+    }
   };
 
   useEffect(() => {
@@ -176,25 +180,26 @@ export default function ManageResults() {
     formData.append("third", third);
     if (poster) formData.append("poster", poster);
 
-    await fetch("http://localhost:5000/api/results/save", {
-      method: "POST",
-      body: formData,
-    });
-
-    setEditResultId(null);
-    loadResults();
-    alert("Result saved");
+    try {
+      await API.post("/results/save", formData);
+      setEditResultId(null);
+      loadResults();
+      alert("Result saved");
+    } catch (err) {
+      alert(err.response?.data?.message || "Save result failed");
+    }
   };
 
   /* -------- DELETE RESULT (FIXED & WORKING) -------- */
   const deleteResult = async (id) => {
     if (!window.confirm("Delete this result?")) return;
 
-    await fetch(`http://localhost:5000/api/results/${id}`, {
-      method: "DELETE",
-    });
-
-    loadResults();
+    try {
+      await API.delete(`/results/${id}`);
+      loadResults();
+    } catch (err) {
+      alert(err.response?.data?.message || "Delete failed");
+    }
   };
 
   return (

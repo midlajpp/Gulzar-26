@@ -36,7 +36,6 @@ export default function Gallery() {
         <h1>Gallery</h1>
         <p>Moments from Gulzar Fest</p>
       </div>
-
       {/* Grid */}
       <div className="gallery-grid">
         {images.map((item) => (

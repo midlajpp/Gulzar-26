@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -16,6 +16,14 @@ import ManageNews from "./admin/pages/ManageNews";
 import ManageGallery from "./admin/pages/ManageGallery";
 import ManageResults from "./admin/pages/ManageResults";
 import AddParticipant from "./admin/pages/AddParticipant";
+
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("adminToken");
+  if (!token) {
+    return <Navigate to="/admin/login" replace />;
+  }
+  return children;
+};
 
 function App() {
   const location = useLocation();
@@ -36,11 +44,46 @@ function App() {
 
         {/* ADMIN ROUTES */}
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/news" element={<ManageNews />} />
-        <Route path="/admin/gallery" element={<ManageGallery />} />
-        <Route path="/admin/results" element={<ManageResults />} />
-        <Route path="/admin/add-participant" element={<AddParticipant />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/news"
+          element={
+            <ProtectedRoute>
+              <ManageNews />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/gallery"
+          element={
+            <ProtectedRoute>
+              <ManageGallery />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/results"
+          element={
+            <ProtectedRoute>
+              <ManageResults />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/add-participant"
+          element={
+            <ProtectedRoute>
+              <AddParticipant />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       {/* Public Footer */}
       {!isAdminRoute && <Footer />}

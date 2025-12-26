@@ -2,6 +2,7 @@ import express from "express";
 import Participant from "../models/Participant.js";
 import Result from "../models/Result.js";
 import upload from "../config/multer.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.get("/participants", async (req, res) => {
 /* ----------------------------------
    SAVE / UPDATE RESULT
 -----------------------------------*/
-router.post("/save", upload.single("poster"), async (req, res) => {
+router.post("/save", protect, upload.single("poster"), async (req, res) => {
   try {
     const { category, program, first, second, third } = req.body;
     const posterUrl = req.file ? req.file.path : "";
@@ -68,7 +69,7 @@ router.get("/public", async (req, res) => {
 /* ----------------------------------
    GET ALL RESULTS (ADMIN)
 -----------------------------------*/
-router.get("/all", async (req, res) => {
+router.get("/all", protect, async (req, res) => {
   try {
     const results = await Result.find()
       .populate("first.participant")
@@ -84,7 +85,7 @@ router.get("/all", async (req, res) => {
 /* ----------------------------------
    DELETE RESULT (ADMIN)
 -----------------------------------*/
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", protect, async (req, res) => {
   try {
     await Result.findByIdAndDelete(req.params.id);
     res.json({ message: "Result deleted" });

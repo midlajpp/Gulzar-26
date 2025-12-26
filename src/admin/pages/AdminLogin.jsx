@@ -1,22 +1,28 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API from "../../api/axios";
 import "../styles/admin.css";
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
-    // SIMPLE HARDCODED LOGIN
-    if (username === "admin" && password === "admin123") {
-      // localStorage.setItem("adminLoggedIn", "true");
+    try {
+      const { data } = await API.post("/auth/login", { username, password });
+      localStorage.setItem("adminToken", data.token);
       navigate("/admin/dashboard");
-    } else {
-      setError("Invalid username or password");
+    } catch (err) {
+      setError(err.response?.data?.message || "Invalid username or password");
+    } finally {
+      setLoading(false);
     }
   };
 
