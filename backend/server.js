@@ -1,13 +1,13 @@
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
 import connectDB from "./config/db.js";
 import newsRoutes from "./routes/newsRoutes.js";
-import galleryRoutes from "../backend/routes/galleryRoutes.js";
+import galleryRoutes from "./routes/galleryRoutes.js";
 import resultRoutes from "./routes/resultRoutes.js";
 import participantRoutes from "./routes/participantRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +19,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 // routes
+app.use("/api/auth", authRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/gallery", galleryRoutes);
 app.use("/api/results", resultRoutes);

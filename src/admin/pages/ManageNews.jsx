@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API from "../../api/axios";
 import "../styles/admin.css";
 import BackButton from "../components/BackButton";
 
@@ -11,10 +12,14 @@ export default function ManageNews() {
 
   // 🔹 Fetch all news
   const fetchNews = async () => {
-    const res = await fetch("http://localhost:5000/api/news");
-    const data = await res.json();
-    setNews(data);
-    setLoading(false);
+    try {
+      const { data } = await API.get("/news");
+      setNews(data);
+    } catch (err) {
+      console.error("Fetch news error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -31,14 +36,15 @@ export default function ManageNews() {
     formData.append("description", desc);
     if (image) formData.append("image", image);
 
-    await fetch("http://localhost:5000/api/news", {
-      method: "POST",
-      body: formData,
-    });
-    setTitle("");
-    setDesc("");
-    setImage(null);
-    fetchNews(); // refresh list
+    try {
+      await API.post("/news", formData);
+      setTitle("");
+      setDesc("");
+      setImage(null);
+      fetchNews(); // refresh list
+    } catch (err) {
+      alert(err.response?.data?.message || "Add news failed");
+    }
   };
 
   // 🔹 Delete news
@@ -46,15 +52,11 @@ export default function ManageNews() {
     const confirmDelete = window.confirm("Are you sure?");
     if (!confirmDelete) return;
 
-    const res = await fetch(`http://localhost:5000/api/news/${id}`, {
-      method: "DELETE",
-    });
-
-    if (res.ok) {
-      // 🔥 DB delete success → now update UI
+    try {
+      await API.delete(`/news/${id}`);
       setNews((prev) => prev.filter((n) => n._id !== id));
-    } else {
-      alert("Delete failed");
+    } catch (err) {
+      alert(err.response?.data?.message || "Delete failed");
     }
   };
 

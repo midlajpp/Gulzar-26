@@ -1,6 +1,7 @@
 import express from "express";
 import News from "../models/News.js";
 import upload from "../config/multer.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get("/", async (req, res) => {
 });
 
 // POST add news with image
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", protect, upload.single("image"), async (req, res) => {
   try {
     const { title, description } = req.body;
     const imageUrl = req.file ? req.file.path : "";
@@ -35,7 +36,7 @@ router.post("/", upload.single("image"), async (req, res) => {
 });
 
 // DELETE news (Admin)
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", protect, async (req, res) => {
   try {
     const deleted = await News.findByIdAndDelete(req.params.id);
 

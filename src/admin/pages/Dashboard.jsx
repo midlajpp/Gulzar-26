@@ -5,7 +5,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("adminLoggedIn");
+    localStorage.removeItem("adminToken");
     navigate("/admin/login");
   };
 

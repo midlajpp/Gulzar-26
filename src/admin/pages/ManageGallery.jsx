@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API from "../../api/axios";
 import "../styles/admin.css";
 import BackButton from "../components/BackButton";
 
@@ -7,9 +8,12 @@ export default function ManageGallery() {
   const [file, setFile] = useState(null);
 
   const fetchImages = async () => {
-    const res = await fetch("http://localhost:5000/api/gallery");
-    const data = await res.json();
-    setImages(data);
+    try {
+      const { data } = await API.get("/gallery");
+      setImages(data);
+    } catch (err) {
+      console.error("Fetch gallery error:", err);
+    }
   };
 
   useEffect(() => {
@@ -23,31 +27,24 @@ export default function ManageGallery() {
     const formData = new FormData();
     formData.append("image", file);
 
-    const res = await fetch("http://localhost:5000/api/gallery", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (res.ok) {
+    try {
+      await API.post("/gallery", formData);
       setFile(null);
-
-      // 🔥 force fresh fetch from DB
-      const fresh = await fetch("http://localhost:5000/api/gallery");
-      const data = await fresh.json();
-      setImages(data);
-    } else {
-      alert("Upload failed");
+      fetchImages();
+    } catch (err) {
+      alert(err.response?.data?.message || "Upload failed");
     }
   };
 
   const deleteImage = async (id) => {
     if (!window.confirm("Delete image?")) return;
 
-    await fetch(`http://localhost:5000/api/gallery/${id}`, {
-      method: "DELETE",
-    });
-
-    setImages((prev) => prev.filter((img) => img._id !== id));
+    try {
+      await API.delete(`/gallery/${id}`);
+      setImages((prev) => prev.filter((img) => img._id !== id));
+    } catch (err) {
+      alert(err.response?.data?.message || "Delete failed");
+    }
   };
 
   return (

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API from "../../api/axios";
 import BackButton from "../components/BackButton";
 
 import "../styles/admin.css";
@@ -15,9 +16,12 @@ export default function AddParticipant() {
 
   // load participants list
   const loadParticipants = async () => {
-    const res = await fetch("http://localhost:5000/api/participants/all");
-    const data = await res.json();
-    setParticipants(data);
+    try {
+      const { data } = await API.get("/participants/all");
+      setParticipants(data);
+    } catch (err) {
+      console.error("Fetch participants error:", err);
+    }
   };
 
   useEffect(() => {
@@ -32,25 +36,23 @@ export default function AddParticipant() {
 
     setLoading(true);
 
-    const url = editId
-      ? `http://localhost:5000/api/participants/${editId}`
-      : "http://localhost:5000/api/participants/add";
+    try {
+      if (editId) {
+        await API.put(`/participants/${editId}`, { name, category, teamName });
+      } else {
+        await API.post("/participants/add", { name, category, teamName });
+      }
 
-    const method = editId ? "PUT" : "POST";
-
-    await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, category, teamName }),
-    });
-
-    setName("");
-    setCategory("");
-    setTeamName("");
-    setEditId(null);
-    setLoading(false);
-
-    loadParticipants();
+      setName("");
+      setCategory("");
+      setTeamName("");
+      setEditId(null);
+      loadParticipants();
+    } catch (err) {
+      alert(err.response?.data?.message || "Save participant failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -158,12 +160,12 @@ export default function AddParticipant() {
                             if (!window.confirm("Delete this participant?"))
                               return;
 
-                            await fetch(
-                              `http://localhost:5000/api/participants/${p._id}`,
-                              { method: "DELETE" }
-                            );
-
-                            loadParticipants();
+                            try {
+                              await API.delete(`/participants/${p._id}`);
+                              loadParticipants();
+                            } catch (err) {
+                              alert(err.response?.data?.message || "Delete failed");
+                            }
                           }}
                         >
                           Delete

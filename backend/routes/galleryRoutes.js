@@ -1,6 +1,7 @@
 import express from "express";
 import Gallery from "../models/Gallery.js";
 import upload from "../config/multer.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get("/", async (req, res) => {
 });
 
 // POST add gallery image
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", protect, upload.single("image"), async (req, res) => {
   try {
     const imageUrl = req.file ? req.file.path : "";
 
@@ -32,7 +33,7 @@ router.post("/", upload.single("image"), async (req, res) => {
 });
 
 // DELETE gallery image
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", protect, async (req, res) => {
   try {
     const deleted = await Gallery.findByIdAndDelete(req.params.id);
 
