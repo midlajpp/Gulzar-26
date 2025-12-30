@@ -59,9 +59,8 @@ export default function AddParticipant() {
     <>
       <div className="admin-page">
         <BackButton />
+        <h1>Add Participant</h1>
         <div className="admin-form">
-          <h1>Add Participant</h1>
-
           <input
             type="text"
             placeholder="Student Name"
@@ -97,6 +96,7 @@ export default function AddParticipant() {
 
           {/* PARTICIPANT LIST */}
           <h3 style={{ marginTop: "30px" }}>Participants List</h3>
+          <br />
           <div className="result-input-row">
             <select onChange={(e) => setFilterCategory(e.target.value)}>
               <option value="">All Categories</option>
@@ -127,7 +127,8 @@ export default function AddParticipant() {
               <tbody>
                 {participants
                   .filter(
-                    (p) => !filterCategory || p.category === filterCategory
+                    (p) =>
+                      !filterCategory || p.category?.includes(filterCategory)
                   )
                   .filter((p) => !filterTeam || p.team.name === filterTeam)
                   .map((p) => (
@@ -164,7 +165,9 @@ export default function AddParticipant() {
                               await API.delete(`/participants/${p._id}`);
                               loadParticipants();
                             } catch (err) {
-                              alert(err.response?.data?.message || "Delete failed");
+                              alert(
+                                err.response?.data?.message || "Delete failed"
+                              );
                             }
                           }}
                         >

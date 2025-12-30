@@ -32,14 +32,14 @@ export default function Home() {
       {/* HERO SECTION */}
 
       <section className="hero">
-        <img src="/hero.png" alt="Gulzar Fest" className="hero-bg" />
+        <img src="/Hero.JPG" alt="Gulzar Fest" className="hero-bg" />
         <div className="hero-overlay"></div>
 
         {/* Text content */}
         <div className="hero-content">
-          <h1>GULZAR 2026</h1>
+          <img src="/logo.svg" alt="" className="hero-gulzar" />
           <div className="hero-line"></div>
-          <p>DEFINING THE APEX</p>
+          <img src="/sub-logo.svg" alt="" className="hero-date" />
         </div>
       </section>
 
@@ -49,8 +49,9 @@ export default function Home() {
         {/* <h2>About Gulzar</h2> */}
 
         <p>
-          “ Gulzar is the journey before the summit <br /> where effort becomes
-          identity and discipline defines success.”
+          Gulzar ’26 centers on the theme "Defining the Apex," a concept that
+          highlights the vital role of hard work, <br /> perseverance, and
+          patience in reaching the apex of any achievement.
         </p>
       </section>
 

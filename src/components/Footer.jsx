@@ -27,10 +27,16 @@ export default function Footer() {
           <a href="https://facebook.com" target="_blank">
             <i className="fab fa-facebook-f"></i>
           </a>
-          <a href="https://wa.me/919999999999" target="_blank">
+          <a
+            href="https://whatsapp.com/channel/0029Vb64Q617j6g9lhsRUD0d"
+            target="_blank"
+          >
             <i className="fab fa-whatsapp"></i>
           </a>
-          <a href="https://youtube.com" target="_blank">
+          <a
+            href="https://youtube.com/@zainstudentsassembly?si=l34h3iKImE2MmFjn"
+            target="_blank"
+          >
             <i className="fab fa-youtube"></i>
           </a>
         </div>

@@ -12,20 +12,13 @@
   justify-content: space-between;
 }
 .nav-logo img {
-  width: 110px;
+  width: 50px;
   height: auto;
   display: block;
 }
-
-
 /* Logo pill */
 .nav-logo {
-  background: rgba(0, 0, 0, 0.55);
   padding: 10px 18px;
-  border-radius: 10px;
-  font-weight: bold;
-  color: #ff9f2d;
-  letter-spacing: 1px;
 }
 
 /* Hamburger pill */
@@ -54,12 +47,19 @@
 }
 
 .nav-links li a {
-  background: rgba(0, 0, 0, 0.55);
   padding: 10px 18px;
   border-radius: 10px;
   color: #ffffff;
   text-decoration: none;
   font-size: 18px;
+  position: relative;
+  transition: all 0.1s ease;
+}
+.nav-links :hover {
+  color: #ff9f2d;
+  font-size: 19px;
+  transition: all 0.1s ease;
+  transform: translateY(-3px);
 }
 
 /* Mobile menu */
@@ -87,7 +87,7 @@
     display: none;
   }
   .nav-logo img {
-    width: 130px;
+    width: 50px;
   }
   .nav-links {
     display: flex;
@@ -97,4 +97,3 @@
     display: none;
   }
 }
-

@@ -9,7 +9,7 @@ export const addParticipant = async (req, res) => {
 
   const participant = await Participant.create({
     name,
-    categories: Array.from(categories),
+    category: Array.from(categories),
     team: { name: team },
   });
 

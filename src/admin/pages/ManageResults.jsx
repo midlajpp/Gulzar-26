@@ -207,9 +207,8 @@ export default function ManageResults() {
       <BackButton />
 
       {/* ================= FORM ================= */}
+      <h1>{editResultId ? "✏️ Edit Result" : "Manage Results"}</h1>
       <div className="admin-form">
-        <h2>{editResultId ? "✏️ Edit Result" : "Manage Results"}</h2>
-
         <select
           value={category}
           disabled={editResultId}
@@ -238,17 +237,29 @@ export default function ManageResults() {
           <>
             <select value={first} onChange={(e) => setFirst(e.target.value)}>
               <option value="">1st Place</option>
-              {participants.map((p) => (
-                <option key={p._id} value={p._id}>
-                  {p.name} ({p.team.name})
-                </option>
-              ))}
+              {participants
+                .filter(
+                  (p) =>
+                    category === "General" ||
+                    category === "Group" ||
+                    p.category?.includes(category)
+                )
+                .map((p) => (
+                  <option key={p._id} value={p._id}>
+                    {p.name} ({p.team.name})
+                  </option>
+                ))}
             </select>
 
             <select value={second} onChange={(e) => setSecond(e.target.value)}>
               <option value="">2nd Place</option>
               {participants
-                .filter((p) => p._id !== first)
+                .filter(
+                  (p) =>
+                    category === "General" ||
+                    category === "Group" ||
+                    p.category?.includes(category)
+                )
                 .map((p) => (
                   <option key={p._id} value={p._id}>
                     {p.name} ({p.team.name})
@@ -259,7 +270,12 @@ export default function ManageResults() {
             <select value={third} onChange={(e) => setThird(e.target.value)}>
               <option value="">3rd Place</option>
               {participants
-                .filter((p) => p._id !== first && p._id !== second)
+                .filter(
+                  (p) =>
+                    category === "General" ||
+                    category === "Group" ||
+                    p.category?.includes(category)
+                )
                 .map((p) => (
                   <option key={p._id} value={p._id}>
                     {p.name} ({p.team.name})
@@ -283,6 +299,7 @@ export default function ManageResults() {
       {/* ================= RESULT LIST ================= */}
       <div className="admin-list">
         <h3>Saved Results</h3>
+        <br />
 
         {results.length === 0 ? (
           <p className="placeholder">No results added yet.</p>

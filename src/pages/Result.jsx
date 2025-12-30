@@ -37,6 +37,28 @@ export default function Result() {
     background: TEAM_COLORS[teamName] || "#333",
   });
 
+  // E-POSTER DOWNLOAD FUNCTION
+
+  const downloadPoster = async (url) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "result-e-poster"; // filename
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      alert("Download failed");
+    }
+  };
+
   return (
     <section className="result-page">
       <div className="result-header">
@@ -98,7 +120,9 @@ export default function Result() {
               style={cardStyle(result.first.participant.team?.name)}
             >
               <span className="prize">First Prize</span>
-              <h3>{result.first.participant.name.toUpperCase()}</h3>
+              <h3 style={{ lineHeight: "23px" }}>
+                {result.first.participant.name.toUpperCase()}
+              </h3>
               <p>{result.first.participant.team?.name?.toUpperCase()}</p>
             </div>
           )}
@@ -109,7 +133,9 @@ export default function Result() {
               style={cardStyle(result.second.participant.team?.name)}
             >
               <span className="prize">Second Prize</span>
-              <h3>{result.second.participant.name.toUpperCase()}</h3>
+              <h3 style={{ lineHeight: "23px" }}>
+                {result.second.participant.name.toUpperCase()}
+              </h3>
               <p>{result.first.participant.team?.name?.toUpperCase()}</p>
             </div>
           )}
@@ -120,15 +146,20 @@ export default function Result() {
               style={cardStyle(result.third.participant.team?.name)}
             >
               <span className="prize">Third Prize</span>
-              <h3>{result.third.participant.name.toUpperCase()}</h3>
+              <h3 style={{ lineHeight: "23px" }}>
+                {result.third.participant.name.toUpperCase()}
+              </h3>
               <p>{result.first.participant.team?.name?.toUpperCase()}</p>
             </div>
           )}
 
           {result.poster && (
-            <a href={result.poster} className="download-btn" download>
+            <button
+              className="download-btn"
+              onClick={() => downloadPoster(result.poster)}
+            >
               Download E-Poster
-            </a>
+            </button>
           )}
         </div>
       )}
