@@ -24,7 +24,10 @@ export default function Footer() {
           <a href="https://www.instagram.com/zain_ics_academy_" target="_blank">
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="https://facebook.com" target="_blank">
+          <a
+            href="https://www.facebook.com/share/17rzBfP3Q9/?mibextid=wwXIfr"
+            target="_blank"
+          >
             <i className="fab fa-facebook-f"></i>
           </a>
           <a
