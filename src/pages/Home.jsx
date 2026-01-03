@@ -32,7 +32,7 @@ export default function Home() {
       {/* HERO SECTION */}
 
       <section className="hero">
-        <img src="/hero.jpg" alt="Gulzar Fest" className="hero-bg" />
+        <img src="/Hero.JPG" alt="Gulzar Fest" className="hero-bg" />
         <div className="hero-overlay"></div>
 
         {/* Text content */}
