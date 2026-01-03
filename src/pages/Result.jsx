@@ -136,7 +136,7 @@ export default function Result() {
               <h3 style={{ lineHeight: "23px" }}>
                 {result.second.participant.name.toUpperCase()}
               </h3>
-              <p>{result.first.participant.team?.name?.toUpperCase()}</p>
+              <p>{result.second.participant.team?.name?.toUpperCase()}</p>
             </div>
           )}
 
@@ -149,7 +149,7 @@ export default function Result() {
               <h3 style={{ lineHeight: "23px" }}>
                 {result.third.participant.name.toUpperCase()}
               </h3>
-              <p>{result.first.participant.team?.name?.toUpperCase()}</p>
+              <p>{result.third.participant.team?.name?.toUpperCase()}</p>
             </div>
           )}
 
