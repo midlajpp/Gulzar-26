@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // Adjust based on your backend URL
+  baseURL: "https://icslifefest.in/api", // Adjust based on your backend URL
 });
 
 // Add a request interceptor to include the token in headers
