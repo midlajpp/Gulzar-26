@@ -16,7 +16,7 @@ export default function Result() {
   /* -------- LOAD PUBLISHED PROGRAMS (CATEGORY BASED) -------- */
   const loadPrograms = async (selectedCategory) => {
     const res = await fetch(
-      `http://localhost:5000/api/results/published-programs?category=${selectedCategory}`
+      `https://icslifefest.in/api/results/published-programs?category=${selectedCategory}`
     );
     const data = await res.json();
     setPrograms(data);
@@ -27,7 +27,7 @@ export default function Result() {
     if (!category || !program) return;
 
     fetch(
-      `http://localhost:5000/api/results/public?category=${category}&program=${program}`
+      `https://icslifefest.in/api/results/public?category=${category}&program=${program}`
     )
       .then((res) => res.json())
       .then((data) => setResult(data));
