@@ -8,7 +8,7 @@ export default function Home() {
   const [galleryPreview, setGalleryPreview] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/gallery")
+    fetch("https://icslifefest.in/api/gallery")
       .then((res) => res.json())
       .then((data) => {
         // 🔥 last 4 images only
@@ -19,7 +19,7 @@ export default function Home() {
 
   const [latestNews, setLatestNews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/news")
+    fetch("https://icslifefest.in/api/news")
       .then((res) => res.json())
       .then((data) => {
         // 🔥 last 3 news only

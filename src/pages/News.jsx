@@ -8,7 +8,7 @@ export default function News() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/news")
+    fetch("https://icslifefest.in/api/news")
       .then((res) => res.json())
       .then((data) => setNews(data));
   }, []);

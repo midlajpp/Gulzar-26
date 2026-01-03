@@ -24,7 +24,7 @@ export default function Gallery() {
   const [selectedImg, setSelectedImg] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/gallery")
+    fetch("https://icslifefest.in/api/gallery")
       .then((res) => res.json())
       .then((data) => setImages(data));
   }, []);
