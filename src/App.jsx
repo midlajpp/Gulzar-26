@@ -25,6 +25,14 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+const UnprotectedRoute = ({ children }) => {
+  const token = localStorage.getItem("adminToken");
+  if (token) {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+  return children;
+};
+
 function App() {
   const location = useLocation();
 
@@ -43,7 +51,11 @@ function App() {
         <Route path="/result" element={<Result />} />
 
         {/* ADMIN ROUTES */}
-        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/login" element={
+          <UnprotectedRoute>
+            <AdminLogin />
+          </UnprotectedRoute>
+        } />
         <Route
           path="/admin/dashboard"
           element={
